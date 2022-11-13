@@ -17,13 +17,20 @@ class Game {
   }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+    let index = 0;
+    const itThis = this;
+    document.onkeypress = function (event) {
+      const symbol = Array.from(document.body.querySelectorAll(".symbol"));
+      if (symbol[index].textContent == event.key.toLowerCase()) {
+        index += 1;
+        itThis.success();
+        if (index == (symbol.length)) {
+          index = 0;
+        }
+      } else {
+        itThis.fail()
+      }
+    }
   }
 
   success() {
